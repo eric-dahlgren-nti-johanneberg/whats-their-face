@@ -1,28 +1,5 @@
 class App < Sinatra::Base
-
-    get '/hej' do
+    get '/' do
         erb :index
     end
-=begin 
-    get '/fruits/index'
-        @statistics = Statistics.all
-        erb :'fruits.index'
-    end
-
-    post '/fruits' do
-        name = params['name']
-        tastiness = params['tastiness']
-        Fruit.create(name, tastiness)
-        redirect '/fruits'
-    end
-
-    get '/fruits/new' do
-        erb :'fruits/new'
-    end
-
-    get '/fruits/:id' do |id|
-        @fruit = Fruit.find_by_id(id)
-        erb :'fruits/show'
-    end     
-=end
 end
