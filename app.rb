@@ -3,9 +3,9 @@ class App < Sinatra::Base
     get '/hej' do
         erb :index
     end
-
+=begin 
     get '/fruits/index'
-        @fruits = Fruit.all
+        @statistics = Statistics.all
         erb :'fruits.index'
     end
 
@@ -23,5 +23,6 @@ class App < Sinatra::Base
     get '/fruits/:id' do |id|
         @fruit = Fruit.find_by_id(id)
         erb :'fruits/show'
-    end
+    end     
+=end
 end
