@@ -1,3 +1,17 @@
-<h1>HELLO WORLD</h1>
-<p> <%= session[:number] %> </p>
-<p> <%= @correct.to_s %> </p>
+<section id="header">
+  <span>What's Their Face!</span>
+</section>
+<section class="column flex">
+  <section class="flex center mt">
+    <img src="<%= @correct[1] %>" />
+  </section>
+  <section class="flex center column">
+    <% @alternatives.each do |person| %>
+      <button class="flex">
+        <p>
+          <%= person[0] %>
+        </p>
+      </button>
+    <% end %>
+  </section>
+</section>

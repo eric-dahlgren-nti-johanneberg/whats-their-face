@@ -7,11 +7,11 @@ class App < Sinatra::Base
     enable :sessions
 
     get '/' do
-        session[:number] = (session[:number] || 0 ) + 1
-        @number = session[:number]
-        @correct = Person.random
 
-       
+        quiz = Person.quiz
+
+        @correct = quiz[:correct]
+        @alternatives = quiz[:alternatives]       
 
         erb :index
     end

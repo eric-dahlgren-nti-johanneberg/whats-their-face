@@ -2,3 +2,52 @@ body {
     background-color: white;
 
 }
+
+section {
+    padding: 1rem;
+}
+
+image {
+    margin-top: 10vh;
+}
+
+button {
+    margin-bottom: .5rem;
+}
+
+.flex {
+    display: flex;
+    flex: 1
+}
+
+.center {
+    align-items: center;
+    margin: auto;
+}
+
+.column {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mt {
+    margin-top: 5vh
+}
+
+#header>span {
+    font-size: 8vw;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
