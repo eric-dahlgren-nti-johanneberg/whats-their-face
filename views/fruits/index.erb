@@ -1,0 +1,6 @@
+<h1>List of Fruits</h1>
+
+<% @fruits.each do |fruit| %>
+    <h2> <%= fruit['name'] %> </h2>
+    <p>Tastiness: <%= fruit['tastiness'] %> </p>
+<% end %>
