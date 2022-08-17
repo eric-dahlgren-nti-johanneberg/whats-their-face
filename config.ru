@@ -2,7 +2,7 @@ require 'bundler'
 
 Bundler.require
 
-require_relative 'models/statistics'
 require_relative 'app'
+require_relative 'models/person'
 
 run App

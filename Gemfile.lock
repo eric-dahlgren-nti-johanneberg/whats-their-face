@@ -7,6 +7,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    multi_json (1.15.0)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     rack (2.2.4)
@@ -23,6 +24,14 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.2.2)
       tilt (~> 2.0)
+    sinatra-contrib (2.2.2)
+      multi_json
+      mustermann (~> 2.0)
+      rack-protection (= 2.2.2)
+      sinatra (= 2.2.2)
+      tilt (~> 2.0)
+    sinatra-reloader (1.0)
+      sinatra-contrib
     sqlite3 (1.4.4)
     thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
@@ -36,6 +45,7 @@ PLATFORMS
 DEPENDENCIES
   rerun
   sinatra
+  sinatra-reloader
   sqlite3
   thin
 
