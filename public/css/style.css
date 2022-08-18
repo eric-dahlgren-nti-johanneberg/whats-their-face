@@ -84,8 +84,11 @@ button:hover {
     margin-top: 5vh
 }
 
-#header {
-
+#header>span {
+    margin-block: 0;
+    font-size: 8vw;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #wrong_answer {

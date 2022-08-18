@@ -7,13 +7,15 @@ class App < Sinatra::Base
     enable :sessions
 
     get '/' do
-        @ueue = Queue::restore(session)
-        @queue = Queue::new(Person::PEOPLE, nil) 
+        @queue = Queue::restore(session)
+        @queue = Queue::new(Person::PEOPLE, nil) if @queue.nil?
 
         quiz = Person.quiz(@queue)
 
         $correct = quiz[:correct]
         @alternatives = quiz[:alternatives]       
+
+        @queue.save(session)
 
         erb :index
     end
@@ -26,6 +28,7 @@ class App < Sinatra::Base
 
     post '/guess' do
         answer = params["test"]
+        @queue = Queue::restore(session)
 
         if answer == $correct[1]
             session["response"] = "Rätt"
