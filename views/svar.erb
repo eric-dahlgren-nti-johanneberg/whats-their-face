@@ -1,0 +1,16 @@
+<Section id="header"> 
+    <span> Your answer was: </span> 
+</section>
+
+<section id="wrong_answer" class="flex center column">
+    <span> Wrong! </span>
+
+        <div> Correct answer: </div>
+
+        <div> <i> <%= @correct[0] %> </i> </div>
+
+        <section id="img-container">
+        <img src="<%= @correct[1] %>">
+        </section>
+
+</section>
