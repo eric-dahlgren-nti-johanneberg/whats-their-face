@@ -15,4 +15,13 @@ class App < Sinatra::Base
 
         erb :index
     end
+
+    get '/svar' do
+
+        quiz = Person.quiz
+
+        @correct = quiz[:correct]
+
+        erb :svar
+    end
 end
