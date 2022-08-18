@@ -1,23 +1,15 @@
-<Section id="header"> 
-    <span> Your answer was: </span> 
+<section class="flex center column" >
+  <h1 class="header--normal"> Your answer was: </h1>
 </section>
-
-<section id="answer" class="flex center column">
-    <span id=<%= session["response"]%>>
-
-     <% if session["response"] == "Rätt" %>
-       Correct!
-     <% else %>
-       Wrong!
-     <% end %>
-     
-    </span>
-
-        <div> Correct answer: </div>
-        <div> <i> <%= $correct[1] %> </i> </div>
-
-        <section id="img-container">
-        <img src="<%= $correct[2] %>">
-        </section>
-
+<section  class="flex center column">
+  <span id="<%= session["response"] == "Rätt" ? "right_answer" : "wrong_answer" %>"><%= session["response"] == "Rätt" ? "Correct!" : "Wrong!" %>!</span>
+  <div> Correct answer: </div>
+  <div> <i> <%= @correct[1] %> </i> </div>
+  <section id="img-container">
+    <img src="<%= @correct[2] %>">
+  </section>
+  <a href="/">
+    <button>Nästa!
+    </button>
+  </a>
 </section>

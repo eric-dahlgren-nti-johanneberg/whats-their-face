@@ -11,7 +11,7 @@ image {
     margin-top: 10vh;
 }
 
-button {
+button, input[type=submit] {
     margin-bottom: .5rem;
     background-color: white;
     border: none;
@@ -28,6 +28,13 @@ button {
     min-height: 280px;
     min-width: 264px;
     position: relative;
+}
+
+.header--normal {
+    margin-block: 0;
+    font-size: 8vw;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #img-container::after {
@@ -78,35 +85,22 @@ button:hover {
 }
 
 #header>span {
+    margin-block: 0;
     font-size: 8vw;
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#answer {
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-    flex-wrap: nowrap;
-    flex-direction: column;
-}
-
-#Rätt {
-    color: green;
-}
-
-#Fel {
-    color: red;
-}
-
-#answer>span {
+#wrong_answer {
     margin: auto;
     margin: 1rem;
+    color: red;
+    font-size: 6vw;
+}
+#right_answer {
+    margin: auto;
+    margin: 1rem;
+    color: greenyellow;
     font-size: 6vw;
 }
 
-#answer>div {
-    font-size: 3vw;
-    font-weight: bold;
-    margin: auto;
-}

@@ -8,39 +8,34 @@ class App < Sinatra::Base
 
     get '/' do
         @queue = Queue::restore(session)
-        @queue = Queue::new(Person::PEOPLE, nil) 
+        @queue = Queue::new(Person::PEOPLE, nil) if @queue.nil?
 
         quiz = Person.quiz(@queue)
 
         $correct = quiz[:correct]
         @alternatives = quiz[:alternatives]       
 
+        @queue.save(session)
+
         erb :index
     end
 
     get '/svar' do
-
-        @queue = Queue::restore(session)
-        @queue = Queue::new(Person::PEOPLE, nil) 
-
-        quiz = Person.quiz(@queue)
-
-        $correct = quiz[:correct]
-        # ^^ finns bara för testning
+        @correct = $correct
 
         erb :svar
-
     end
 
     post '/guess' do
         answer = params["test"]
+        @queue = Queue::restore(session)
 
-        if answer == $correct[0]
+        if answer == $correct[1]
             session["response"] = "Rätt"
         else
             session["response"] = "Fel"
         end
-        redirect('/')
+        redirect('/svar')
 
     end
 end

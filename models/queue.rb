@@ -15,13 +15,20 @@ class Queue
         if session && session[:queue]
             
 
-            p session
-            return Queue::new(session[:queue], nil)
+            p JSONsession[:queue]
+            return Queue::json_create(session[:queue])
         end
     end
 
-    def save()
+    def save(session)
+        session[:queue] = to_json
+    end
 
+    def remove_from_queue(id)
+        puts "remove #{id}"
+        @queue = @queue.filter do |person| 
+            person[0] != id
+        end
     end
 
     # ser till att samma person inte väljs två gånger i rad, om den inte är sist kvar.
