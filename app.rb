@@ -19,12 +19,10 @@ class App < Sinatra::Base
     end
 
     get '/svar' do
-
-        quiz = Person.quiz
-
-        @correct = quiz[:correct]
+        @correct = $correct
 
         erb :svar
+    end
 
     post '/guess' do
         answer = params["test"]
@@ -34,7 +32,7 @@ class App < Sinatra::Base
         else
             session["response"] = "Fel"
         end
-        redirect('/')
+        redirect('/svar')
 
     end
 end

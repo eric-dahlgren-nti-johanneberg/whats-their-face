@@ -30,6 +30,13 @@ button, input[type=submit] {
     position: relative;
 }
 
+.header--normal {
+    margin-block: 0;
+    font-size: 8vw;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 #img-container::after {
     content: '';
     position: absolute;
@@ -77,29 +84,20 @@ button:hover {
     margin-top: 5vh
 }
 
-#header>span {
-    font-size: 8vw;
-    font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+#header {
+
 }
 
 #wrong_answer {
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-    flex-wrap: nowrap;
-    flex-direction: column;
-}
-
-#wrong_answer>span {
     margin: auto;
     margin: 1rem;
     color: red;
     font-size: 6vw;
 }
-
-#wrong_answer>div {
-    font-size: 3vw;
-    font-weight: bold;
+#right_answer {
     margin: auto;
+    margin: 1rem;
+    color: greenyellow;
+    font-size: 6vw;
 }
+
