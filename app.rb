@@ -7,7 +7,7 @@ class App < Sinatra::Base
     enable :sessions
 
     get '/' do
-        @ueue = Queue::restore(session)
+        @queue = Queue::restore(session)
         @queue = Queue::new(Person::PEOPLE, nil) 
 
         quiz = Person.quiz(@queue)
@@ -20,11 +20,17 @@ class App < Sinatra::Base
 
     get '/svar' do
 
-        quiz = Person.quiz
+        @queue = Queue::restore(session)
+        @queue = Queue::new(Person::PEOPLE, nil) 
 
-        @correct = quiz[:correct]
+        quiz = Person.quiz(@queue)
+
+        $correct = quiz[:correct]
+        # ^^ finns bara för testning
 
         erb :svar
+
+    end
 
     post '/guess' do
         answer = params["test"]

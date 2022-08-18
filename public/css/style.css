@@ -83,7 +83,7 @@ button:hover {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#wrong_answer {
+#answer {
     display: flex;
     justify-content: center;
     margin-top: 10%;
@@ -91,14 +91,21 @@ button:hover {
     flex-direction: column;
 }
 
-#wrong_answer>span {
+#Rätt {
+    color: green;
+}
+
+#Fel {
+    color: red;
+}
+
+#answer>span {
     margin: auto;
     margin: 1rem;
-    color: red;
     font-size: 6vw;
 }
 
-#wrong_answer>div {
+#answer>div {
     font-size: 3vw;
     font-weight: bold;
     margin: auto;
