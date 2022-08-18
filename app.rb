@@ -21,7 +21,7 @@ class App < Sinatra::Base
     post '/guess' do
         answer = params["test"]
 
-        if answer == $correct[0]
+        if answer == $correct[1]
             session["response"] = "Rätt"
         else
             session["response"] = "Fel"

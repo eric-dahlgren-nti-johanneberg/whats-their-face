@@ -11,7 +11,7 @@ image {
     margin-top: 10vh;
 }
 
-button {
+button, input[type=submit] {
     margin-bottom: .5rem;
     background-color: white;
     border: none;
