@@ -4,7 +4,7 @@
 <section  class="flex center column">
   <span id="<%= session["response"] == "Rätt" ? "right_answer" : "wrong_answer" %>"><%= session["response"] == "Rätt" ? "Correct!" : "Wrong!" %>!</span>
   <div> Correct answer: </div>
-  <div> <i> <%= @correct[1] %> </i> </div>
+  <div> <i> <%= session[:correct][1] %> </i> </div>
   <section id="img-container">
     <img src="<%= @correct[2] %>">
   </section>

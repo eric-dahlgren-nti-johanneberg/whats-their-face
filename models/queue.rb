@@ -7,16 +7,13 @@ class Queue
     def initialize(people, last)
         @queue = people
         @last = last
+
     end
 
     def self.restore(session)
-        success = false
-
         if session && session[:queue]
-            
-
-            p JSONsession[:queue]
-            return Queue::json_create(session[:queue])
+            data = JSON.parse(session[:queue])
+            return json_create(data)
         end
     end
 
@@ -25,16 +22,22 @@ class Queue
     end
 
     def remove_from_queue(id)
-        puts "remove #{id}"
-        @queue = @queue.filter do |person| 
-            person[0] != id
+        changed = @queue.reject do |person|
+            person[0] == id
         end
+
+        @queue = changed
+
+    end
+
+    def get_left
+        @queue.length
     end
 
     # ser till att samma person inte väljs två gånger i rad, om den inte är sist kvar.
     def sample
-        avalible = @queue.filter do |person|
-            person[0] != @last
+        avalible = @queue.reject do |person|
+            person[0] == @last
         end
         avalible = @queue if @queue.length == 1
 
