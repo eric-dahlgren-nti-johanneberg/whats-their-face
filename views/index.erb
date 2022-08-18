@@ -3,15 +3,17 @@
 </section>
 <section class="column flex">
   <section class="flex center mt" id="img-container">
-    <img src="<%= @correct[1] %>" />
+    <img src="<%= $correct[1] %>" />
+    <%# Game Shark:<%= $correct[0] %>
   </section>
   <section class="flex center column">
-    <% @alternatives.each do |person| %>
-      <button class="flex">
-        <p>
-          <%= person[0] %>
-        </p>
-      </button>
-    <% end %>
+    <form action="/guess" method="POST">
+      <% @alternatives.each do |person| %>
+        <input type="submit" class="flex" name="test" value="<%= person[0] %>">
+      <% end %>
+    </form>
   </section>
+  <article>
+    <%= session["response"] %>
+  </article>
 </section>

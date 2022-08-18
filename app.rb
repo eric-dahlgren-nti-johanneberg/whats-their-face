@@ -10,7 +10,7 @@ class App < Sinatra::Base
 
         quiz = Person.quiz
 
-        @correct = quiz[:correct]
+        $correct = quiz[:correct]
         @alternatives = quiz[:alternatives]       
 
         erb :index
@@ -23,5 +23,16 @@ class App < Sinatra::Base
         @correct = quiz[:correct]
 
         erb :svar
+
+    post '/guess' do
+        answer = params["test"]
+
+        if answer == $correct[0]
+            session["response"] = "Rätt"
+        else
+            session["response"] = "Fel"
+        end
+        redirect('/')
+
     end
 end
