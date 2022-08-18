@@ -3,15 +3,18 @@
 </section>
 <section class="column flex">
   <section class="flex center mt" id="img-container">
-    <img src="<%= @correct[1] %>" />
+    <img src="<%= @correct[2] %>" />
   </section>
   <section class="flex center column">
     <% @alternatives.each do |person| %>
       <button class="flex">
         <p>
-          <%= person[0] %>
+          <%= person[1] %>
         </p>
       </button>
     <% end %>
+  </section>
+  <section>
+    <%= @queue.to_json %>
   </section>
 </section>
