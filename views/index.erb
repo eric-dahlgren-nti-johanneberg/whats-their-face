@@ -9,7 +9,7 @@
   <section class="flex center column">
     <form action="/guess" method="POST">
       <% @alternatives.each do |person| %>
-        <input type="submit" class="flex" name="test" value="<%= person[0] %>">
+        <input type="submit" class="flex" name="test" value="<%= person[1] %>">
       <% end %>
     </form>
   </section>
