@@ -10,8 +10,9 @@
     <span id="<%= session["response"] == "Rätt" ? "right_answer" : "wrong_answer" %>"><%= session["response"] == "Rätt" ? "Correct!" : "Wrong!" %>!</span>
     <div> Correct answer: </div>
     <div> <i> <%= session[:correct].name %> </i> </div>
-    <a href="/">
-      <button>Nästa!</button>
+    <a href="/quiz">
+      <button>Nästa!
+      </button>
     </section>
   </a>
 </section>

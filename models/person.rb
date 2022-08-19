@@ -60,7 +60,7 @@ PEOPLE_ARRAY = [{
 }, {
   id: '982fa023-e803-4e7c-826f-04707c7b9923',
   name: 'Annette Messham'
-}].freeze
+}].first(3).freeze
 
 class Person
   attr_reader :id, :name, :avatar

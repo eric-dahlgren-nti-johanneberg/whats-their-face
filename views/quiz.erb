@@ -1,0 +1,19 @@
+<section id="header">
+  <span>What's Their Face!</span>
+</section>
+<section class="column flex">
+  <section class="flex center mt" id="img-container">
+    <% session["response"] = -1%>
+    <img src="<%= session[:correct].avatar.url %>" />
+    <div id="quiz_timer" style="opacity:0;"><%= session[:settings]["timer"] %></div>
+    <div id="visual_quiz_timer"><%= session[:settings]["timer"] %></div>
+  </section>
+  
+  <section class="flex center column">
+    <form action="/guess" method="POST">
+      <% @alternatives.each do |person| %>
+        <input type="submit" class="flex" name="test" value="<%= person.name %>">
+      <% end %>
+    </form>
+  </section>
+</section>

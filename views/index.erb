@@ -1,17 +1,13 @@
 <section id="header">
   <span>What's Their Face!</span>
 </section>
-<section class="column flex">
-  <section class="flex center mt" id="img-container">
-    <img src="<%= session[:correct].avatar.url %>" />
-    <%# Game Shark:<%= $correct[0] %>
-  </section>
-  <section class="flex center column">
-    <form action="/guess" method="POST">
-      <% @alternatives.each do |person| %>
-        
-        <input type="submit" class="flex" name="test" value="<%= person.name %>">
-      <% end %>
-    </form>
-  </section>
+<section class="column center middle flex">
+  <img src="<%= PEOPLE_ARRAY[rand(0..(PEOPLE_ARRAY.length-1))][2] %>">
+  <form action="/setup" method="POST">
+    <label for="option_select">Number of choices: 2 - <%= PEOPLE_ARRAY.length %><label><br>
+    <input type="range" class="slider" min="2" max="<%= PEOPLE_ARRAY.length %>" value="3" name="option_select" id="option_select"><br><br>
+    <label for="timer">Time per person: 5 - 65<label><br>
+    <input type="range" class="slider" min="5" max="65" value="60" name="timer" id="timer"><br><br>
+    <input type="submit" value="Begin Quiz">
+  </form>
 </section>

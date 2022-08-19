@@ -8,22 +8,20 @@ class Quiz
     @history = history
   end
 
-  def create_turn
+  def create_turn(settings)
     correct = @queue.sample
 
     avalible = @queue.initial.filter do |person|
       person.id != correct.id
     end
-    options = avalible.sample(4)
+    options = avalible.sample(settings['option_select'].to_i - 1)
     options << correct
 
     { correct: correct, alternatives: options.shuffle }
   end
 
   def answer(answer)
-    p @queue.last
     correct = @queue.initial.find { |person| person.id == @queue.last }
-
     if correct.name == answer
       @queue.remove_from_queue(correct.id)
       success = true
