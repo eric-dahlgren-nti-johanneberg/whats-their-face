@@ -8,7 +8,6 @@ class App < Sinatra::Base
 
     get '/' do
         @queue = Queue::restore(session)
-        p @queue
         @queue = Queue::new(PEOPLE, nil) if @queue.nil?
 
         quiz = Person.quiz(@queue)

@@ -14,6 +14,8 @@ image {
 button, input[type=submit] {
     margin-bottom: .5rem;
     background-color: white;
+    padding: .5rem;
+    display: block;
     border: none;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     padding-block: .5em;
@@ -21,6 +23,7 @@ button, input[type=submit] {
     border-radius: 4px;
     transition: background 0.2s ease;
     cursor: pointer;
+    font-size: large;
 }
 
 #img-container {
@@ -49,7 +52,7 @@ button, input[type=submit] {
     z-index: -1;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover {
     background: #f8f8f8;
 }
 
