@@ -97,6 +97,7 @@ button:hover {
     color: red;
     font-size: 6vw;
 }
+
 #right_answer {
     margin: auto;
     margin: 1rem;
@@ -104,3 +105,10 @@ button:hover {
     font-size: 6vw;
 }
 
+.space {
+    justify-content: space-evenly;
+}
+
+#results {
+    font-size: 4vw;
+}

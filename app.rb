@@ -59,4 +59,9 @@ class App < Sinatra::Base
 
         redirect('/')
     end
+
+    get '/resultat' do
+        
+        erb :resultat
+    end
 end
