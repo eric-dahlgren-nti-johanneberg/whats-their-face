@@ -8,6 +8,7 @@
     <div id="quiz_timer" style="opacity:0;"><%= $settings["timer"] %></div>
     <div id="visual_quiz_timer"><%= $settings["timer"] %></div>
   </section>
+  
   <section class="flex center column">
     <form action="/guess" method="POST">
       <% @alternatives.each do |person| %>
