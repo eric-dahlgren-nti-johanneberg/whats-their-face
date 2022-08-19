@@ -61,6 +61,6 @@ class App < Sinatra::Base
     post '/setup' do
         $settings = params
         p $settings
-        redirect('/svar')
+        redirect('/quiz')
     end
 end
