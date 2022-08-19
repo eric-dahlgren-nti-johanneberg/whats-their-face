@@ -144,10 +144,10 @@ label {
     border-radius: 50%;
 }
 
-.space {
-    justify-content: space-evenly;
-}
-
 #results {
     font-size: 4vw;
+}
+
+#worst {
+    font-size: 1.5vw;
 }
