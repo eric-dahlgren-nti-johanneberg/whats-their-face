@@ -10,7 +10,7 @@ class App < Sinatra::Base
 
   get '/' do
     @queue = Queue.restore(session)
-    @queue = Queue.new(PEOPLE, nil) if @queue.nil?
+    @queue = Queue.new(Person::PEOPLE, nil) if @queue.nil?
 
     quiz = Person.quiz(@queue)
 
@@ -23,6 +23,8 @@ class App < Sinatra::Base
 
   get '/svar' do
     @correct = session[:correct]
+
+    redirect '/' if @correct.nil?
 
     erb :svar
   end
