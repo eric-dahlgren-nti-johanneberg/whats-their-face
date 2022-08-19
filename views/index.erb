@@ -2,9 +2,12 @@
   <span>What's Their Face!</span>
 </section>
 <section class="column center middle flex">
+  <img src="<%= PEOPLE_ARRAY[rand(0..(PEOPLE_ARRAY.length-1))][2] %>">
   <form action="/setup" method="POST">
-    <label for="option_select">Antal namnval: 2 - <%= PEOPLE_ARRAY.length %><label><br>
+    <label for="option_select">Number of choices: 2 - <%= PEOPLE_ARRAY.length %><label><br>
     <input type="range" class="slider" min="2" max="<%= PEOPLE_ARRAY.length %>" value="3" name="option_select" id="option_select"><br><br>
+    <label for="timer">Time per person: 5 - 65<label><br>
+    <input type="range" class="slider" min="5" max="65" value="60" name="timer" id="timer"><br><br>
     <input type="submit" value="Begin Quiz">
   </form>
 </section>
