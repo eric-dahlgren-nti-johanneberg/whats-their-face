@@ -3,8 +3,8 @@
 ##
 # Klass för hantering av historik
 class History
-  def initialize
-    @history = []
+  def initialize(history = [])
+    @history = history
   end
 
   ##
@@ -30,5 +30,18 @@ class History
     else
       @history.each
     end
+  end
+
+  def to_json(*a)
+    {
+      'json_class' => self.class.name,
+      'data' => {
+        'history' => @history,
+      }
+    }.to_json(*a)
+  end
+
+  def self.json_create(o)
+    new(o['data']['queue'])
   end
 end

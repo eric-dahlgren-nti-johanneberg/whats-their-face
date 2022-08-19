@@ -9,15 +9,15 @@ class App < Sinatra::Base
   enable :sessions
 
   get '/' do
-    @queue = Queue.restore(session)
-    @queue = Queue.new(Person::PEOPLE, nil) if @queue.nil?
+    @quiz = Quiz.restore(session)
+    @quiz = Quiz.new if @quiz.nil?
 
-    quiz = Person.quiz(@queue)
+    turn = @quiz.create_turn
 
-    session[:correct] = quiz[:correct]
-    @alternatives = quiz[:alternatives]
+    session[:correct] = turn[:correct]
+    @alternatives = turn[:alternatives]
 
-    @queue.save(session)
+    @quiz.save(session)
     erb :index
   end
 
@@ -31,25 +31,21 @@ class App < Sinatra::Base
 
   post '/guess' do
     answer = params['test']
-    queue = Queue.restore(session)
     return redirect('/') unless session && session[:correct]
 
-    if answer == session['correct'][1]
-      queue.remove_from_queue(session['correct'][0])
-      queue.save(session)
-      session['response'] = 'Rätt'
-    else
-      session['response'] = 'Fel'
-    end
+    quiz = Quiz.restore(session)
+    is_correct = quiz.answer(answer)
 
-    redirect('/finished') if queue.get_left.zero?
+    session['response'] = is_correct ? 'Rätt' : 'Fel'
+
+    redirect('/finished') if quiz.done?
 
     redirect('/svar')
   end
 
   get '/finished' do
-    queue = Queue.new(Person::PEOPLE, nil)
-    queue.save(session)
+    quiz = Quiz.new
+    quiz.save(session)
 
     redirect('/')
   end

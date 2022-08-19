@@ -3,16 +3,15 @@
 </section>
 <section class="column flex">
   <section class="flex center mt" id="img-container">
-    <img src="<%= session[:correct][2] %>" />
+    <img src="<%= session[:correct].avatar.url %>" />
     <%# Game Shark:<%= $correct[0] %>
   </section>
   <section class="flex center column" >
     <span id="<%= session["response"] == "Rätt" ? "right_answer" : "wrong_answer" %>"><%= session["response"] == "Rätt" ? "Correct!" : "Wrong!" %>!</span>
     <div> Correct answer: </div>
-    <div> <i> <%= session[:correct][1] %> </i> </div>
+    <div> <i> <%= session[:correct].name %> </i> </div>
     <a href="/">
-      <button>Nästa!
-      </button>
+      <button>Nästa!</button>
     </section>
   </a>
 </section>
