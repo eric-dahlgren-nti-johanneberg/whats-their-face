@@ -46,16 +46,9 @@ class App < Sinatra::Base
             session['response'] = 'Fel'
         end
 
-        redirect('/finished') if queue.get_left.zero?
+        redirect('/resultat') if queue.get_left.zero?
 
         redirect('/svar')
-    end
-
-    get '/finished' do
-        queue = Queue.new(Person::PEOPLE, nil)
-        queue.save(session)
-
-        redirect('/')
     end
 
     post '/setup' do
@@ -67,5 +60,11 @@ class App < Sinatra::Base
     get '/resultat' do
 
         erb :resultat
+    end
+
+    post '/reset' do
+        queue = Queue.new(Person::PEOPLE, nil)
+        queue.save(session)
+        redirect('/')
     end
 end
