@@ -1,15 +1,18 @@
-<section class="flex center column" >
-  <h1 class="header--normal"> Your answer was: </h1>
+<section id="header">
+  <span>Your Answer Was</span>
 </section>
-<section  class="flex center column">
-  <span id="<%= session["response"] == "Rätt" ? "right_answer" : "wrong_answer" %>"><%= session["response"] == "Rätt" ? "Correct!" : "Wrong!" %>!</span>
-  <div> Correct answer: </div>
-  <div> <i> <%= session[:correct][1] %> </i> </div>
-  <section id="img-container">
-    <img src="<%= @correct[2] %>">
+<section class="column flex">
+  <section class="flex center mt" id="img-container">
+    <img src="<%= session[:correct][2] %>" />
+    <%# Game Shark:<%= $correct[0] %>
   </section>
-  <a href="/">
-    <button>Nästa!
-    </button>
+  <section class="flex center column" >
+    <span id="<%= session["response"] == "Rätt" ? "right_answer" : "wrong_answer" %>"><%= session["response"] == "Rätt" ? "Correct!" : "Wrong!" %>!</span>
+    <div> Correct answer: </div>
+    <div> <i> <%= session[:correct][1] %> </i> </div>
+    <a href="/">
+      <button>Nästa!
+      </button>
+    </section>
   </a>
 </section>

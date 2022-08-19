@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'thin'
+gem 'cucumber'
+gem 'rerun'
+gem 'rspec-core'
 gem 'sinatra'
 gem 'sinatra-reloader'
-gem 'rerun'
 gem 'sqlite3'
+gem 'thin'
