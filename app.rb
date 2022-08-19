@@ -63,4 +63,9 @@ class App < Sinatra::Base
         p $settings
         redirect('/quiz')
     end
+
+    get '/resultat' do
+
+        erb :resultat
+    end
 end
