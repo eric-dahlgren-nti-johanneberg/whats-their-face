@@ -3,7 +3,9 @@
 ##
 # Klass för hantering av historik
 class History
-  @history = []
+  def initialize
+    @history = []
+  end
 
   ##
   # Lägger till en person i historiken
@@ -20,5 +22,13 @@ class History
 
   def full_history
     @history
+  end
+
+  def each(&block)
+    if block_given?
+      @history.each(&block)
+    else
+      @history.each
+    end
   end
 end
