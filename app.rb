@@ -8,55 +8,59 @@ require 'sinatra/reloader'
 class App < Sinatra::Base
   enable :sessions
 
-  get '/' do
-    @queue = Queue.restore(session)
-    @queue = Queue.new(Person::PEOPLE, nil) if @queue.nil?
-
-    quiz = Person.quiz(@queue)
-
-    session[:correct] = quiz[:correct]
-    @alternatives = quiz[:alternatives]
-
-    @queue.save(session)
-    erb :index
-  end
-
-  get '/svar' do
-    @correct = session[:correct]
-
-    redirect '/' if @correct.nil?
-
-    erb :svar
-  end
-
-  post '/guess' do
-    answer = params['test']
-    queue = Queue.restore(session)
-    return redirect('/') unless session && session[:correct]
-
-    if answer == session['correct'][1]
-      queue.remove_from_queue(session['correct'][0])
-      queue.save(session)
-      session['response'] = 'Rätt'
-    else
-      session['response'] = 'Fel'
+    get '/' do
+        erb :index
     end
 
-    redirect('/finished') if queue.get_left.zero?
+    get '/quiz' do
+        @queue = Queue.restore(session)
+        @queue = Queue.new(Person::PEOPLE, nil) if @queue.nil?
+    
+        quiz = Person.quiz(@queue)
+    
+        session[:correct] = quiz[:correct]
+        @alternatives = quiz[:alternatives]
+    
+        @queue.save(session)
+        erb :quiz
+    end
 
-    redirect('/svar')
-  end
+    get '/svar' do
+        @correct = session[:correct]
 
-  get '/finished' do
-    queue = Queue.new(Person::PEOPLE, nil)
-    queue.save(session)
+        redirect '/quiz' if @correct.nil?
 
-    redirect('/')
-  end
+        erb :svar
+    end
 
-  get '/resultat' do
+    post '/guess' do
+        answer = params['test']
+        queue = Queue.restore(session)
+        return redirect('/quiz') unless session && session[:correct]
 
-    erb :resultat
-  end
+        if answer == session['correct'][1]
+            queue.remove_from_queue(session['correct'][0])
+            queue.save(session)
+            session['response'] = 'Rätt'
+        else
+            session['response'] = 'Fel'
+        end
 
+        redirect('/finished') if queue.get_left.zero?
+
+        redirect('/svar')
+    end
+
+    get '/finished' do
+        queue = Queue.new(Person::PEOPLE, nil)
+        queue.save(session)
+
+        redirect('/')
+    end
+
+    post '/setup' do
+        $settings = params
+        p $settings
+        redirect('/quiz')
+    end
 end

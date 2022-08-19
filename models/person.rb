@@ -27,12 +27,13 @@ class Person
     options.shuffle
   end
 
+
   ##
   # Väljer 1 person, och ger 5 namn varav 1 är rätt
   #
   def self.quiz(queue)
     correct = queue.sample
-    alternatives = Person.options(correct, 5)
+    alternatives = Person.options(correct, $settings["option_select"].to_i)
 
     { correct: correct, alternatives: alternatives }
   end
