@@ -61,7 +61,6 @@ button, input[type=submit] {
     content: '';
     position: absolute;
     background: #65c9ff;
-    background-color: red;
     height: 223px;
     width: 223px;
     border-radius: 200px;
