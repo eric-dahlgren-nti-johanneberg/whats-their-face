@@ -8,13 +8,12 @@ class Queue
 
   def initialize(people, last, initial = people)
     @queue = people
-    @initial = initial
+    @initial = initial.map(&:clone)
     @last = last
   end
 
   def remove_from_queue(id)
     changed = @queue.reject do |person|
-      p person.id
       person.id == id
     end
 

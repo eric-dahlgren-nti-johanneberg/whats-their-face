@@ -16,6 +16,7 @@ class History
   # @param [Boolean] correct är det korrekt svar
   def add_result(person, correct)
     @history.push([person, correct])
+    p @history
   end
 
   def clear
@@ -40,6 +41,6 @@ class History
   end
 
   def self.json_create(o)
-    new(o['data']['queue'])
+    new(o['data']['history'])
   end
 end

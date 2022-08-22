@@ -36,6 +36,7 @@ class App < Sinatra::Base
 
     quiz = Quiz.restore(session)
     is_correct = quiz.answer(answer)
+
     quiz.save(session)
     session['response'] = is_correct ? 'Rätt' : 'Fel'
 
@@ -58,7 +59,7 @@ class App < Sinatra::Base
 
   get '/resultat' do
     quiz = Quiz.restore(session)
-    p quiz
+    redirect '/' if quiz.nil?
 
     history = quiz.history.history
 
