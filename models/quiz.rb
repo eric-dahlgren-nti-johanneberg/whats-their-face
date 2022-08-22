@@ -29,7 +29,7 @@ class Quiz
       success = false
     end
 
-    @history.add_result(correct.id, success)
+    @history.add_result(correct.id, answer, success)
     success
   end
 

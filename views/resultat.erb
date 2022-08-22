@@ -3,14 +3,14 @@
 </section>
 
 <section class="flex center column">
-    <div id="results"> <%= @correct.length %>/<%=@incorrect.length + @correct.length%> accurate! </div>
+    <div id="results"> <%= @correct.length %>/<%=@incorrect.length + @correct.length%> correct! </div>
 </section>
 
 <section class="flex">
     <div class="flex center column mt">
         <h2 id="worst"> Face you knew the least: </h2>
         <div id="img-container"> 
-            <img src="<%= @worst_name.avatar.url %>">
+            <img src="<%= @worst_face.avatar.url %>">
         </div>
     </div>
     <div class="flex center column mt">

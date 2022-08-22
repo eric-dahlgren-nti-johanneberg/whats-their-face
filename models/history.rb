@@ -14,8 +14,9 @@ class History
   #
   # @param [Number] person id:t för personen
   # @param [Boolean] correct är det korrekt svar
-  def add_result(person, correct)
-    @history.push([person, correct])
+  # @param [String] vad gissningen var
+  def add_result(person, answer, correct)
+    @history.push([person, answer, correct])
     p @history
   end
 
