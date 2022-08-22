@@ -21,6 +21,8 @@ class App < Sinatra::Base
     @quiz = Quiz.restore(session)
     @quiz = Quiz.new if @quiz.nil?
 
+    session["response"] = -1
+
     turn = @quiz.create_turn(session[:settings])
 
     session[:correct] = turn[:correct]
