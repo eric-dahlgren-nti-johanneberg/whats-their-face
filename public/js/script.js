@@ -1,10 +1,10 @@
-var timerLength = document.getElementById("quiz_timer").textContent;
-var timeText = document.getElementById("visual_quiz_timer")
+var time = document.getElementById("visual_quiz_timer");
+var timerLength = time.textContent;
 
 setTimeout(timeout, parseInt(timerLength)*1000);
 
-var time = setInterval(function() {
-    timeText.textContent = timeText.textContent - 1;
+var timeText = setInterval(function() {
+    time.textContent = time.textContent - 1;
 }, 1000);
 
 function timeout() {
