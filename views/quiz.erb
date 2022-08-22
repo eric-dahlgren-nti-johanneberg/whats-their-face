@@ -5,9 +5,12 @@
   <section class="flex mt" id="img-container">
     <img src="<%= session[:correct].avatar.url %>" />
   </section>
-  
     <div id="visual_quiz_timer"><%= session[:settings]["timer"] %></div>
+    <form action="/reset" method="POST">
+      <input type="submit" name="quit" value="Quit">
+    </form>
   <section class="flex center column">
+    <h2>Their name could be...</h2>
     <form action="/guess" method="POST">
       <% @alternatives.each do |person| %>
         <input type="submit" class="flex" name="test" value="<%= person.name %>">

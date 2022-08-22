@@ -168,7 +168,7 @@ label {
 }
 
 #visual_quiz_timer {
-    margin: 60px 0px 0px 50px;
+    margin-top: 50px;
     color: red;
     font-size: 64px;
 }
