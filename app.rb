@@ -71,6 +71,12 @@ class App < Sinatra::Base
     @perfect = history.all? { |answer| answer[2] == true}
     @worst_face = quiz.queue.initial.find { |person| person.id == face }
     @worst_name = quiz.queue.initial.find { |person| person.name == name }
+    p @worst_name.class
+    p @worst_name
+
+    if @worst_name == nil
+      @worst_name = {name:"Time"}
+    end
 
     @correct = history.select { |result| result[2] }
     @incorrect = history.reject { |result| result[2] }
@@ -82,5 +88,17 @@ class App < Sinatra::Base
     quiz = Quiz.new
     quiz.save(session)
     redirect('/')
+  end
+
+  get '/timeout' do
+    answer = 'Out of Time'
+    quiz = Quiz.restore(session)
+    is_correct = quiz.answer(answer)
+    quiz.save(session)
+
+    p "out of luck"
+
+    session['response'] = 'Fel'
+    redirect('/svar')
   end
 end
