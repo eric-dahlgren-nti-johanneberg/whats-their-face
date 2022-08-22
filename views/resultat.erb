@@ -3,10 +3,10 @@
 </section>
 
 <section class="flex center column">
-    <div id="results"> <%= @correct.length %>/<%=@incorrect.length + @correct.length%> correct! </div>
+    <div id="results"> <%= @correct.length %>/<%=@incorrect.length + @correct.length%> correct guesses! </div>
 </section>
 
-<% if !@perfect %>
+<% if @incorrect.length > 0 %>
   <section class="flex">
     <div class="flex center column mt">
         <h2 id="worst"> Face you knew the least: </h2>
