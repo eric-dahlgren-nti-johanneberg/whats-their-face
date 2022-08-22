@@ -68,7 +68,6 @@ class App < Sinatra::Base
     face = history.max_by { |faces| history.count(faces) }[0]
     name = history.max_by { |names| history.count(names) }[1]
 
-    @perfect = history.all? { |answer| answer[2] == true}
     @worst_face = quiz.queue.initial.find { |person| person.id == face }
     @worst_name = quiz.queue.initial.find { |person| person.name == name }
     p @worst_name.class

@@ -13,11 +13,10 @@ class History
   # Lägger till en person i historiken
   #
   # @param [Number] person id:t för personen
+  # @param [String] answer vad gissningen var
   # @param [Boolean] correct är det korrekt svar
-  # @param [String] vad gissningen var
   def add_result(person, answer, correct)
     @history.push([person, answer, correct])
-    p @history
   end
 
   def clear
