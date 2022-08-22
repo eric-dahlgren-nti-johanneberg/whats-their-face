@@ -3,7 +3,7 @@ Default_people_array = PEOPLE_ARRAY.map { |person| Person.new(person[:id], perso
 class Quiz
   attr_reader :queue, :history
 
-  def initialize(queue = Queue.new(Default_people_array, nil), history = History.new)
+  def initialize(queue = Queue.new(Default_people_array, nil), history = History.new([]))
     @queue = queue
     @history = history
   end
