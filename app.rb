@@ -62,7 +62,9 @@ class App < Sinatra::Base
     redirect '/' if quiz.nil?
 
     history = quiz.history.history
+    name = history.max_by {|names| history.count(names)}[0]
 
+    @worst_name = quiz.queue.initial.find{|person| person.id == name}
     @correct = history.select { |result| result[1] }
     @incorrect = history.reject { |result| result[1] }
 
