@@ -9,6 +9,9 @@ class App < Sinatra::Base
   enable :sessions
 
   get '/' do
+    random = (PEOPLE_ARRAY[rand(0..(PEOPLE_ARRAY.length - 1))])
+    @random = Person.new(random[:id], random[:name]) 
+
     erb :index
   end
 

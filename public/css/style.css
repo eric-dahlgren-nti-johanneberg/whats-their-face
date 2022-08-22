@@ -1,6 +1,11 @@
 body {
     background-color: white;
+    margin: 0;
+    padding: 0;
+}
 
+body > section {
+    padding: 0;
 }
 
 section {
@@ -9,6 +14,13 @@ section {
 
 image {
     margin-top: 10vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 button, input[type=submit] {
