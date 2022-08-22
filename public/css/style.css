@@ -39,11 +39,16 @@ button, input[type=submit] {
 }
 
 #img-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     padding: 0;
-    min-height: 280px;
+    min-height: 264px;
     min-width: 264px;
     position: relative;
 }
+
+
 
 .header--normal {
     margin-block: 0;
@@ -55,11 +60,10 @@ button, input[type=submit] {
 #img-container::after {
     content: '';
     position: absolute;
-    bottom: 1px;
-    left: 12px;
-    background: #65c9ff; /*  ; */
-    height: 240px;
-    width: 240px;
+    background: #65c9ff;
+    background-color: red;
+    height: 223px;
+    width: 223px;
     border-radius: 200px;
     z-index: -1;
 }
