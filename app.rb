@@ -13,6 +13,8 @@ class App < Sinatra::Base
   end
 
   get '/quiz' do
+    redirect '/' if session[:settings].nil?
+
     @quiz = Quiz.restore(session)
     @quiz = Quiz.new if @quiz.nil?
 
@@ -32,10 +34,10 @@ class App < Sinatra::Base
 
     quiz = Quiz.restore(session)
     is_correct = quiz.answer(answer)
-
+    quiz.save(session)
     session['response'] = is_correct ? 'Rätt' : 'Fel'
 
-    redirect('/result') if quiz.done?
+    redirect('/resultat') if quiz.done?
 
     redirect('/svar')
   end
@@ -53,6 +55,14 @@ class App < Sinatra::Base
   end
 
   get '/resultat' do
+    quiz = Quiz.restore(session)
+    p quiz
+
+    history = quiz.history.history
+
+    @correct = history.select { |result| result[1] }
+    @incorrect = history.reject { |result| result[1] }
+
     erb :resultat
   end
 

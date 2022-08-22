@@ -14,6 +14,7 @@ class Queue
 
   def remove_from_queue(id)
     changed = @queue.reject do |person|
+      p person.id
       person.id == id
     end
 
@@ -23,6 +24,7 @@ class Queue
   def left
     @queue.length
   end
+
   # ser till att samma person inte väljs två gånger i rad, om den inte är sist kvar.
   def sample
     avalible = @queue.reject do |person|

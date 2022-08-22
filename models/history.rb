@@ -3,8 +3,10 @@
 ##
 # Klass för hantering av historik
 class History
+  attr_reader :history
+
   def initialize(history = [])
-    @history = history
+    @history = history || []
   end
 
   ##
@@ -20,10 +22,6 @@ class History
     @history = []
   end
 
-  def full_history
-    @history
-  end
-
   def each(&block)
     if block_given?
       @history.each(&block)
@@ -36,7 +34,7 @@ class History
     {
       'json_class' => self.class.name,
       'data' => {
-        'history' => @history,
+        'history' => @history
       }
     }.to_json(*a)
   end
