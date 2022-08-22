@@ -2,7 +2,9 @@
   <span>What's Their Face!</span>
 </section>
 <section class="column center middle flex">
-  <img src="<%= PEOPLE_ARRAY[rand(0..(PEOPLE_ARRAY.length-1))][2] %>">
+  <section id="img-container">
+    <img src="<%= @random.avatar.url %>">
+  </section>
   <form action="/setup" method="POST">
     <label for="option_select">Number of choices: 2 - <%= PEOPLE_ARRAY.length %><label><br>
     <input type="range" class="slider" min="2" max="<%= PEOPLE_ARRAY.length %>" value="3" name="option_select" id="option_select"><br><br>

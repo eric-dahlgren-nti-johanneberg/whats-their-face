@@ -7,6 +7,6 @@ class Avatar
   end
 
   def generate_url(seed)
-    "https://avatars.dicebear.com/api/avataaars/#{seed}.svg"
+    "https://avatars.dicebear.com/api/avataaars/#{seed}.svg?style=circle"
   end
 end
