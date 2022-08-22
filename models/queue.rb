@@ -32,7 +32,8 @@ class Queue
     avalible = @queue if @queue.length == 1
 
     returning = avalible.sample
-    @last = returning.id
+
+    @last = returning.id unless returning.nil?
     returning
   end
 
@@ -41,12 +42,17 @@ class Queue
       'json_class' => self.class.name,
       'data' => {
         'queue' => @queue,
-        'last' => @last
+        'last' => @last,
+        'initial' => @initial
       }
     }.to_json(*a)
   end
 
   def self.json_create(o)
-    new(o['data']['queue'].map { |person| Person.json_create(person) }, o['data']['last'])
+    new(o['data']['queue'].map do |person|
+          Person.json_create(person)
+        end, o['data']['last'], o['data']['initial'].map do |person|
+                                  Person.json_create(person)
+                                end)
   end
 end

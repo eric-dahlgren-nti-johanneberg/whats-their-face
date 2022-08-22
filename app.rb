@@ -10,7 +10,7 @@ class App < Sinatra::Base
 
   get '/' do
     random = (PEOPLE_ARRAY[rand(0..(PEOPLE_ARRAY.length - 1))])
-    @random = Person.new(random[:id], random[:name]) 
+    @random = Person.new(random[:id], random[:name])
 
     erb :index
   end
@@ -21,7 +21,7 @@ class App < Sinatra::Base
     @quiz = Quiz.restore(session)
     @quiz = Quiz.new if @quiz.nil?
 
-    session["response"] = -1
+    session['response'] = -1
 
     turn = @quiz.create_turn(session[:settings])
 
@@ -65,9 +65,11 @@ class App < Sinatra::Base
     redirect '/' if quiz.nil?
 
     history = quiz.history.history
-    name = history.max_by {|names| history.count(names)}[0]
+    name = history.max_by { |names| history.count(names) }[0]
 
-    @worst_name = quiz.queue.initial.find{|person| person.id == name}
+    @worst_name = quiz.queue.initial.find { |person| person.id == name }
+    p quiz.queue
+
     @correct = history.select { |result| result[1] }
     @incorrect = history.reject { |result| result[1] }
 
