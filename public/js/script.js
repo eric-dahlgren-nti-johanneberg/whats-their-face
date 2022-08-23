@@ -19,6 +19,7 @@ if (window.location.pathname == "/") {
     slider.max = values;
     maxLabel.textContent = values;
   };
+
 }
 
 if (window.location.pathname == "/quiz") {
