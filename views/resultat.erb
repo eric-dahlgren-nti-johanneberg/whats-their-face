@@ -16,7 +16,7 @@
     </div>
     <div class="flex center column mt">
         <h2 id="worst"> Name you knew the least: </h2>
-        <div class="mt" id="worst"> <%= @worst_name.name %> </div>
+        <div class="mt" id="worst"> <%= @worst_name == nil ? "Running out of time" : @worst_name.name %>  </div>
     </div>
     </section>
 <% else %>

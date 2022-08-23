@@ -71,8 +71,6 @@ class App < Sinatra::Base
     @worst_face = quiz.queue.initial.find { |person| person.id == face }
     @worst_name = quiz.queue.initial.find { |person| person.name == name }
 
-    @worst_name = { name: 'Time' } if @worst_name.nil?
-
     @correct = history.select { |result| result[2] }
     @incorrect = history.reject { |result| result[2] }
 
