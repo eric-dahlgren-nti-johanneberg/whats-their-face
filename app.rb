@@ -63,19 +63,15 @@ class App < Sinatra::Base
   get '/resultat' do
     quiz = Quiz.restore(session)
     redirect '/' if quiz.nil?
-    
+
     history = quiz.history.history
     face = history.max_by { |faces| history.count(faces) }[0]
     name = history.max_by { |names| history.count(names) }[1]
 
     @worst_face = quiz.queue.initial.find { |person| person.id == face }
     @worst_name = quiz.queue.initial.find { |person| person.name == name }
-    p @worst_name.class
-    p @worst_name
 
-    if @worst_name == nil
-      @worst_name = {name:"Time"}
-    end
+    @worst_name = { name: 'Time' } if @worst_name.nil?
 
     @correct = history.select { |result| result[2] }
     @incorrect = history.reject { |result| result[2] }
@@ -95,7 +91,7 @@ class App < Sinatra::Base
     is_correct = quiz.answer(answer)
     quiz.save(session)
 
-    p "out of luck"
+    p 'out of luck'
 
     session['response'] = 'Fel'
     redirect('/svar')
