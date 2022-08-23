@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'securerandom'
+
 PEOPLE_ARRAY = [{
   id: 'bca3ae18-ef0a-4139-8b09-1db8b274fb4a',
   name: 'Luisa Lavens'
@@ -65,10 +67,10 @@ PEOPLE_ARRAY = [{
 class Person
   attr_reader :id, :name, :avatar
 
-  def initialize(id, name)
+  def initialize(name, id = SecureRandom.uuid)
     @id = id
     @name = name
-    @avatar = Avatar.new(id)
+    @avatar = Avatar.new(name)
   end
 
   def to_json(*a)
@@ -82,6 +84,6 @@ class Person
   end
 
   def self.json_create(o)
-    new(o['data']['id'], o['data']['name'])
+    new(o['data']['name'], o['data']['id'])
   end
 end

@@ -1,4 +1,4 @@
-Default_people_array = PEOPLE_ARRAY.map { |person| Person.new(person[:id], person[:name]) }
+Default_people_array = PEOPLE_ARRAY.map { |person| Person.new(person[:name], person[:id]) }
 
 class Quiz
   attr_reader :queue, :history

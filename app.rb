@@ -19,7 +19,13 @@ class App < Sinatra::Base
     redirect '/' if session[:settings].nil?
 
     @quiz = Quiz.restore(session)
-    @quiz = Quiz.new if @quiz.nil?
+
+    if @quiz.nil?
+      people = session[:settings][:names].split("\n").map { |name| Person.new(name) }
+      @quiz = Quiz.new(Queue.new(people, nil))
+    end
+
+    p @quiz
 
     session['response'] = -1
 
@@ -57,6 +63,7 @@ class App < Sinatra::Base
   post '/setup' do
     settings = params
     session[:settings] = settings
+
     redirect('/quiz')
   end
 
@@ -78,8 +85,8 @@ class App < Sinatra::Base
   end
 
   post '/reset' do
-    quiz = Quiz.new
-    quiz.save(session)
+    session[:quiz] = nil
+
     redirect('/')
   end
 
