@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'securerandom'
 require 'sinatra/base'
 require 'sinatra/reloader'
 
@@ -10,47 +11,34 @@ class App < Sinatra::Base
 
   get '/' do
     random = (PEOPLE_ARRAY[rand(0..(PEOPLE_ARRAY.length - 1))])
-    @random = Person.new(random[:id], random[:name])
+    @random = Person.new(random)
 
+    session[:rounds] = 1
     erb :index
   end
 
   get '/quiz' do
     redirect '/' if session[:settings].nil?
+    last = session[:last]
 
-    @quiz = Quiz.restore(session)
+    @alternatives = QuizDB.get_people(session[:settings][:option_select], last)
+    session[:correct] = @alternatives.sample
+    session[:last] = session[:correct].id
 
-    if @quiz.nil?
-      people = session[:settings][:names].split("\n").map { |name| Person.new(name) }
-      @quiz = Quiz.new(Queue.new(people, nil))
-    end
-
-    p @quiz
-
-    session['response'] = -1
-
-    turn = @quiz.create_turn(session[:settings])
-
-    session[:correct] = turn[:correct]
-    @alternatives = turn[:alternatives]
-
-    @quiz.save(session)
+    p session[:correct].name
 
     erb :quiz
   end
 
   post '/guess' do
     answer = params['test']
-    return redirect('/') unless session && session[:correct]
+    correct = QuizDB.guess(session[:id], session[:last], answer)
 
-    quiz = Quiz.restore(session)
-    is_correct = quiz.answer(answer)
+    session['response'] = correct ? 'Rätt' : 'Fel'
 
-    quiz.save(session)
-    session['response'] = is_correct ? 'Rätt' : 'Fel'
-
-    redirect('/resultat') if quiz.done?
-
+    session[:rounds] = 1 if session[:rounds].nil?
+    redirect '/resultat' if session[:rounds] >= session[:settings][:rounds].to_i
+    session[:rounds] += 1
     redirect('/svar')
   end
 
@@ -64,22 +52,22 @@ class App < Sinatra::Base
     settings = params
     session[:settings] = settings
 
+    session[:id] = session[:session_id].to_s + SecureRandom.uuid
+
     redirect('/quiz')
   end
 
   get '/resultat' do
-    quiz = Quiz.restore(session)
-    redirect '/' if quiz.nil?
+    history = QuizDB.get_history(session[:id])
 
-    history = quiz.history.history
-    face = history.max_by { |faces| history.count(faces) }[0]
-    name = history.max_by { |names| history.count(names) }[1]
+    redirect '/' if history.nil?
 
-    @worst_face = quiz.queue.initial.find { |person| person.id == face }
-    @worst_name = quiz.queue.initial.find { |person| person.name == name }
+    face = history.max_by { |_faces| history.count }
 
-    @correct = history.select { |result| result[2] }
-    @incorrect = history.reject { |result| result[2] }
+    @worst = QuizDB.find(face['person_id'])
+
+    @correct = history.select { |result| result["result"] == 1 }
+    @incorrect = history.reject { |result| result['result'] == 1 }
 
     erb :resultat
   end
@@ -91,12 +79,7 @@ class App < Sinatra::Base
   end
 
   get '/timeout' do
-    answer = 'Out of Time'
-    quiz = Quiz.restore(session)
-    is_correct = quiz.answer(answer)
-    quiz.save(session)
-
-    p 'out of luck'
+    QuizDB.guess(session[:id], session[:last], 'Out Of Time')
 
     session['response'] = 'Fel'
     redirect('/svar')
