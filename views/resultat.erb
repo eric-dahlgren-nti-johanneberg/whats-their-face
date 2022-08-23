@@ -11,12 +11,12 @@
     <div class="flex center column mt">
         <h2 id="worst"> Face you knew the least: </h2>
         <div id="img-container"> 
-            <img src="<%= @worst_face.avatar.url %>">
+            <img src="<%= @worst.avatar.url %>">
         </div>
     </div>
     <div class="flex center column mt">
         <h2 id="worst"> Name you knew the least: </h2>
-        <div class="mt" id="worst"> <%= @worst_name == nil ? "Running out of time" : @worst_name.name %>  </div>
+        <div class="mt" id="worst"> <%= @worst.name == nil ? "Running out of time" : @worst.name %>  </div>
     </div>
     </section>
 <% else %>
