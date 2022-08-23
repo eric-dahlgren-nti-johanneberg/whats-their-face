@@ -19,7 +19,13 @@ class App < Sinatra::Base
     redirect '/' if session[:settings].nil?
 
     @quiz = Quiz.restore(session)
-    @quiz = Quiz.new if @quiz.nil?
+
+    if @quiz.nil?
+      people = session[:settings][:names].split("\n").map { |name| Person.new(name) }
+      @quiz = Quiz.new(Queue.new(people, nil))
+    end
+
+    p @quiz
 
     session['response'] = -1
 
@@ -57,13 +63,14 @@ class App < Sinatra::Base
   post '/setup' do
     settings = params
     session[:settings] = settings
+
     redirect('/quiz')
   end
 
   get '/resultat' do
     quiz = Quiz.restore(session)
     redirect '/' if quiz.nil?
-    
+
     history = quiz.history.history
     face = history.max_by { |faces| history.count(faces) }[0]
     name = history.max_by { |names| history.count(names) }[1]
@@ -78,8 +85,8 @@ class App < Sinatra::Base
   end
 
   post '/reset' do
-    quiz = Quiz.new
-    quiz.save(session)
+    session[:quiz] = nil
+
     redirect('/')
   end
 
@@ -89,7 +96,7 @@ class App < Sinatra::Base
     is_correct = quiz.answer(answer)
     quiz.save(session)
 
-    p "out of luck"
+    p 'out of luck'
 
     session['response'] = 'Fel'
     redirect('/svar')

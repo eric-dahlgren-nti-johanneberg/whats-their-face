@@ -10,6 +10,15 @@
     <input type="range" class="slider" min="2" max="<%= PEOPLE_ARRAY.length %>" value="2" name="option_select" id="option_select"><br><br>
     <label for="timer" id="display_timer">Time per person: 60 seconds</label><br>
     <input type="range" class="slider" min="5" max="65" value="60" name="timer" id="timer"><br><br>
+    
+    
+    <section class="flex column">
+    <label for="names">
+      Namn (ett per rad)
+    </label>
+      <textarea id="names" name="names" rows="5" cols="30"><%= PEOPLE_ARRAY.map {|person| person[:name]}.join("\n") %></textarea>
+    </section>
+
     <input type="submit" value="Begin Quiz">
   </form>
 </section>
