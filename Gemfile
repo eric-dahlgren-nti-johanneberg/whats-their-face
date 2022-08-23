@@ -2,7 +2,6 @@
 
 source 'https://rubygems.org'
 
-gem 'cucumber'
 gem 'rerun'
 gem 'rspec-core'
 gem 'sinatra'

@@ -1,3 +1,0 @@
-Feature: Queue
-
-    Feature Description
