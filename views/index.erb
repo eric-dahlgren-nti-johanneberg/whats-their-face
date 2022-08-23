@@ -6,12 +6,12 @@
     <img src="<%= @random.avatar.url %>">
   </section>
   <form action="/setup" method="POST">
-    <label for="option_select" id="options">Number of choices: 2 - <span id="max"><%= PEOPLE_ARRAY.length %></span></label><br>
+    <label for="option_select" id="options">Number of choices: 3</label><br>
     <input type="range" class="slider" min="2" max="<%= PEOPLE_ARRAY.length %>" value="3" name="option_select" id="option_select"><br><br>
     <label for="timer" id="display_timer">Time per person: 60</label><br>
     <input type="range" class="slider" min="5" max="65" value="60" name="timer" id="timer"><br><br>
     
-    <label for="timer" id="display_timer">Antal rundor</label><br>
+    <label for="rounds" id="display_rounds">Number of rounds: 5</label><br>
     <input type="range" class="slider" min="2" max="10" value="5" name="rounds" id="rounds"><br><br>
     
 
