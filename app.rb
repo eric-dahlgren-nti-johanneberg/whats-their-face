@@ -81,6 +81,10 @@ class App < Sinatra::Base
   get '/timeout' do
     QuizDB.guess(session[:id], session[:last], 'Out Of Time')
 
+    session[:rounds] = 1 if session[:rounds].nil?
+    redirect '/resultat' if session[:rounds] >= session[:settings][:rounds].to_i
+    session[:rounds] += 1
+
     session['response'] = 'Fel'
     redirect('/svar')
   end
