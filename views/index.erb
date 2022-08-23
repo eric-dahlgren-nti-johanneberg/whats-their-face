@@ -6,9 +6,9 @@
     <img src="<%= @random.avatar.url %>">
   </section>
   <form action="/setup" method="POST">
-    <label for="option_select">Number of choices: 2 - <%= PEOPLE_ARRAY.length %></label><br>
-    <input type="range" class="slider" min="2" max="<%= PEOPLE_ARRAY.length %>" value="3" name="option_select" id="option_select"><br><br>
-    <label for="timer" id="display_timer">Time per person: 60</label><br>
+    <label for="option_select" id="display_options">Number of choices: 2</label><br>
+    <input type="range" class="slider" min="2" max="<%= PEOPLE_ARRAY.length %>" value="2" name="option_select" id="option_select"><br><br>
+    <label for="timer" id="display_timer">Time per person: 60 seconds</label><br>
     <input type="range" class="slider" min="5" max="65" value="60" name="timer" id="timer"><br><br>
     <input type="submit" value="Begin Quiz">
   </form>

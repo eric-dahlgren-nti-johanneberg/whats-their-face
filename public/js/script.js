@@ -2,9 +2,15 @@
 if (window.location.pathname == "/"){
     var time_value = document.getElementById("timer");
     var display_time_value = document.getElementById("display_timer");
+    var choice_value = document.getElementById("option_select");
+    var display_choice_value = document.getElementById("display_options");
 
     time_value.oninput = function(){
-        display_time_value.innerHTML = "Time per person: " + this.value;
+        display_time_value.innerHTML = "Time per person: " + this.value+ " seconds";
+    }
+
+    choice_value.oninput = function(){
+        display_choice_value.innerHTML = "Number of choices: " + this.value;
     }
 }
 
